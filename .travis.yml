@@ -22,21 +22,19 @@ matrix:
       draft: true
       on:
         all_branches: true
-
+      api_key:
+        secure: vKqnAMsPJncF+EsJWwmhfDf7RkH+sgNP2OZVMeoC4c5UhVOzwiivxrpSRD+znQ2SWsMe07yWS1oixApov3tuXaUVFa/CxPF393qxIuxnhpthYRuvi205VsvHlFmFOmg2bHSUVL6qupDFlr9RoOQEWgIYCEo4clXhSAt+nq1tHSw1HcwNk3NcpSaxAPJ/JxxdcROjSr9YhsKML2LfIH4pW7RVdq2B5VdTKIDh4/l+Q6pQ2YeeN5T3o2IpU3PCDm9r5Q4yJVVeNY+yWeRmt45rlUBlf8PJOG4iQzkJJWi2+NMGILDGZ0UH+q2L4ymBlOUhS7q0OyTeNeUBIxtRC2blopQAj3FvQHYK0GpgYY101JHrcFpHXdAsuN9qcDQ7NPdlAgTBDnzl/QLHcGnwuIuiyLmZH8stLwgLaf96bGTHIrJrGfCG2Zk3tH0PqSXeL86cN+rl1l47BNLEndCfqZSZZl2rpofYz8Al8LfEhvRzXMe8JGxzh49CGOnjwpQjfDHZbTQnrSjAQUbSzz7XvRwhBlxP6xcfUxI15fIzsUY5UrMeN7/KoWS1jahmHG0Eh8J0skA9e7AWJYK1MewEmJ7wv3dL/3jX2Am7RZgFCshwiWwRp8J11JvmuLQ7q7oJno1i4U4OKn+bq1McUHOZPGgHDAH5WJ9m0JcfInVYYfuqmCI=
   - os: osx
     name: Analyze Coverity
     osx_image: xcode10.2
     compiler: clang
     before_install:
     - HOMEBREW_NO_AUTO_UPDATE=1 brew install openssl
-    - curl -Ls https://entrust.com/root-certificates/entrust_l1k.cer -o ~/entrust_l1k.crt || exit 1
+    - curl -Ls https://entrust.com/root-certificates/entrust_l1k.cer -o ~/entrust_l1k.crt
+      || exit 1
     - curl -LS https://curl.haxx.se/ca/cacert.pem -o ~/cacert.pem || exit 1
     - cat ~/entrust_l1k.crt >> ~/cacert.pem || exit 1
     - echo "cacert=\"$HOME/cacert.pem\"" > ~/.curlrc || exit 1
     - echo "ca_certificate=$HOME/cacert.pem" > ~/.wgetrc || exit 1
     script:
     - echo "This script runs coverity..."
-
-deploy:
-  password:
-    secure: 0b7PKmR+d+DxVWiqXe7OPm3sAPRZ8AJF6J4YcLFWhNsb003J6pk3s78vDP0+EHqolll21AJmbXr1hORXmkY3aGIGwunBSbvxJQTXfQuvMvBWdXM0CDYxnq4eAt2N4e34DA8siZx/yaUdHiI+twPa3Vx7xOtAUAtUjyy/i+DKyQtCHCij5oPy4lP4SCYwzDH7NlyOzK+00vFam0dTsqT9qQPGcRgOiXE5J+t9iJk4r0he6e/hKRRuPHfC3vYixDABQKQKiIcmYcUtddXojzREdsA0cjyQrrYANI6w+BaJwtNL52GD1+RaNFPQrCzZ59EPWWtkQFY6BixFI0h5zv6M5qRDkrIQL/xzOkFEU9i7Ooe+lLB66ESxpqjezNSgKzgtz8Zhnd9nBLIlEVRFGuQ1kpH6vpS5r5sL1CDpKUN9KLaUl6Qq99KqWfPh5nd7gU8F6DsELi3cnX90MiX/7pU1cFnRJCGBT/yoUIrpcC7Cd+oJzvbeeefYyfXZ0EhNCOgJfnrBeJeQUjNBZC9YtyU8ykAA+nJUBkhAchah/YKShlsSxki5K8mBoyWKwFhUdibDd5r5blzaLcD2Nfqs28YpGYc2DccxvBNx+Pewrsc0R4dGMmO76/baAFNIEaXy268Z4+xAP5IAOuD54qpVMERT/QpbM164F6jeX7NN5K08u6E=
