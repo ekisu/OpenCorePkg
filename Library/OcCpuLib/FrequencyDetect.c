@@ -143,7 +143,7 @@ InternalCalculateTSCFromPMTimer (
   //
   // Do not use ACPI PM timer in ring 3 (e.g. emulator).
   //
-  if ((AsmReadCs () & 3U) == 3) {
+  if (1 || (AsmReadCs () & 3U) == 3) {
     return EFI_UNSUPPORTED;
   }
 
