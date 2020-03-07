@@ -75,15 +75,19 @@ SmcIoVirtualSmcReadValue (
   for (Index = 0; Index < ARRAY_SIZE (mVirtualSmcKeyValue); Index++) {
     if (mVirtualSmcKeyValue[Index].Key == Key) {
       if (mVirtualSmcKeyValue[Index].Size != Size) {
+        DEBUG ((DEBUG_INFO, "OCSMC: SmcReadValue KeyMismatch\n"));
         return EFI_SMC_KEY_MISMATCH;
       }
 
+      DEBUG ((DEBUG_INFO, "OCSMC: SmcReadValue Copying\n"));
       CopyMem (Value, mVirtualSmcKeyValue[Index].Data, Size);
 
+      DEBUG ((DEBUG_INFO, "OCSMC: SmcReadValue Success\n"));
       return EFI_SMC_SUCCESS;
     }
   }
 
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcReadValue NotFound\n"));
   return EFI_SMC_NOT_FOUND;
 }
 
