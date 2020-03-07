@@ -39,7 +39,9 @@
   Input/InputSimAbsPtr.c
   Input/InputSimTextIn.c
   OcBootstrap.c
-  Output/OutputStGop.c
+  Output/OutputFbGop.c
+  #Output/OutputStGop.c
+  Output/StGopShared.c
   Views/BootPicker.c
 
 [Packages]
@@ -64,6 +66,7 @@
   DebugLib
   FrameBufferBltLib
   MemoryAllocationLib
+  MtrrLib
   OcBootManagementLib
   OcGuardLib
   OcPngLib
