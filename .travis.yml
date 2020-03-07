@@ -20,6 +20,10 @@ matrix:
       - Binaries/DEBUG/*.zip
       file_glob: true
       draft: true
+      branches:
+        only:
+        - weird-ioread-bug
+
   - os: osx
     name: Analyze Coverity
     osx_image: xcode10.2
