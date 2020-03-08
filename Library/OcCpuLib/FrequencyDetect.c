@@ -137,6 +137,8 @@ InternalGetPmTimerAddr (
     }
   }
 
+  DEBUG ((DEBUG_INFO, "Timer type: %s, addr: %x\n", Type, TimerAddr));
+
   return TimerAddr;
 }
 
