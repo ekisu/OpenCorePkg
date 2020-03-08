@@ -60,8 +60,13 @@ InternalGetPmTimerAddr (
 {
   UINTN   TimerAddr;
   UINT32  CpuVendor;
+  CHAR*   TypeData;
 
   TimerAddr = 0;
+
+  if (Type == NULL) {
+    Type = &TypeData;
+  }
 
   if (Type != NULL) {
     *Type = "Failure";
@@ -137,7 +142,7 @@ InternalGetPmTimerAddr (
     }
   }
 
-  DEBUG ((DEBUG_INFO, "Timer type: %s, addr: %x\n", Type, TimerAddr));
+  DEBUG ((DEBUG_INFO, "Timer type: %s, addr: %x\n", *Type, TimerAddr));
 
   return TimerAddr;
 }
