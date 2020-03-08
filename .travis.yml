@@ -18,6 +18,7 @@ matrix:
       file:
       - Binaries/RELEASE/*.zip
       - Binaries/DEBUG/*.zip
+      - Binaries/NOOPT/*.zip
       file_glob: true
       draft: true
       on:
