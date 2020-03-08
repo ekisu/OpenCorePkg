@@ -55,18 +55,13 @@ AmdEnableAcpiMmio ()
 
 UINTN
 InternalGetPmTimerAddr (
-  OUT CHAR8 **Type  OPTIONAL
+  OUT CONST CHAR8 **Type  OPTIONAL
   )
 {
   UINTN   TimerAddr;
   UINT32  CpuVendor;
-  CHAR8*  TypeData;
 
   TimerAddr = 0;
-
-  if (Type == NULL) {
-    Type = &TypeData;
-  }
 
   if (Type != NULL) {
     *Type = "Failure";
@@ -98,25 +93,30 @@ InternalGetPmTimerAddr (
       if (Type != NULL) {
         *Type = "LPC";
       }
+      DEBUG ((DEBUG_INFO, "LPC\n"));
     } else if (PciRead16 (PCI_ICH_PMC_ADDRESS (0)) == V_ICH_PCI_VENDOR_ID) {
       if ((PciRead8 (PCI_ICH_PMC_ADDRESS (R_ICH_PMC_ACPI_CNTL)) & B_ICH_PMC_ACPI_CNTL_ACPI_EN) != 0) {
         TimerAddr = (PciRead16 (PCI_ICH_PMC_ADDRESS (R_ICH_PMC_ACPI_BASE)) & B_ICH_PMC_ACPI_BASE_BAR) + R_ACPI_PM1_TMR;
         if (Type != NULL) {
           *Type = "PMC ACPI";
         }
+        DEBUG ((DEBUG_INFO, "PMC ACPI\n"));
       } else if ((PciRead16 (PCI_ICH_PMC_ADDRESS (R_ICH_PMC_BAR2_BASE)) & B_ICH_PMC_BAR2_BASE_BAR_EN) != 0) {
         TimerAddr = (PciRead16 (PCI_ICH_PMC_ADDRESS (R_ICH_PMC_BAR2_BASE)) & B_ICH_PMC_BAR2_BASE_BAR) + R_ACPI_PM1_TMR;
         if (Type != NULL) {
           *Type = "PMC BAR2";
         }
+        DEBUG ((DEBUG_INFO, "PMC BAR2\n"));
       } else if (Type != NULL) {
         *Type = "Invalid INTEL PMC";
+        DEBUG ((DEBUG_INFO, "Invalid INTEL PMC\n"));
       }
     } else if (Type != NULL) {
       //
       // This is currently the case for Z390 and B360 boards.
       //
       *Type = "Unknown INTEL";
+      DEBUG ((DEBUG_INFO, "Unknown INTEL\n"));
     }
   }
 
@@ -139,10 +139,11 @@ InternalGetPmTimerAddr (
       if (Type != NULL) {
         *Type = "AMD";
       }
+      DEBUG ((DEBUG_INFO, "AMD\n"));
     }
   }
 
-  DEBUG ((DEBUG_INFO, "Timer type: %s, addr: %x\n", *Type, TimerAddr));
+  DEBUG ((DEBUG_INFO, "Timer addr: %x\n", TimerAddr));
 
   return TimerAddr;
 }
