@@ -55,12 +55,12 @@ AmdEnableAcpiMmio ()
 
 UINTN
 InternalGetPmTimerAddr (
-  OUT CONST CHAR8 **Type  OPTIONAL
+  OUT CHAR8 **Type  OPTIONAL
   )
 {
   UINTN   TimerAddr;
   UINT32  CpuVendor;
-  CHAR*   TypeData;
+  CHAR8*  TypeData;
 
   TimerAddr = 0;
 
