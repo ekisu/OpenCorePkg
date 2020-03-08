@@ -31,6 +31,28 @@
 
 #include "OcCpuInternals.h"
 
+VOID
+AmdEnableAcpiMmio ()
+{
+  UINTN ControlPort = 0xCD6;
+  UINTN DataPort = 0xCD7;
+  UINT8 AcpiMMioEnOffset = 0x24;
+  // 1 here enables AcpiMMio space.
+  UINT8 AcpiMMioDecodeEnFlag = (1 << 0);
+  // Sets where AcpiMMio registers will be.
+  // 0: Memory-mapped space;
+  // 1: I/O-mapped space.
+  UINT8 AcpiMMioSelFlag = (1 << 1);
+  UINT8 Reg;
+
+  IoWrite8(ControlPort, AcpiMMioEnOffset);
+  Reg = IoRead8(DataPort);
+  Reg |= AcpiMMioDecodeEnFlag;
+  // We want AcpiMMioSelFlag to be 0.
+  Reg &= ~AcpiMMioSelFlag;
+  IoWrite8(DataPort, Reg);
+}
+
 UINTN
 InternalGetPmTimerAddr (
   OUT CONST CHAR8 **Type  OPTIONAL
@@ -104,6 +126,8 @@ InternalGetPmTimerAddr (
     AsmCpuid (CPUID_SIGNATURE, NULL, &CpuVendor, NULL, NULL);
 
     if (CpuVendor == CPUID_VENDOR_AMD) {
+      AmdEnableAcpiMmio();
+
       TimerAddr = MmioRead32 (
         R_AMD_ACPI_MMIO_BASE + R_AMD_ACPI_MMIO_PMIO_BASE + R_AMD_ACPI_PM_TMR_BLOCK
         );
@@ -143,7 +167,7 @@ InternalCalculateTSCFromPMTimer (
   //
   // Do not use ACPI PM timer in ring 3 (e.g. emulator).
   //
-  if (1 || (AsmReadCs () & 3U) == 3) {
+  if ((AsmReadCs () & 3U) == 3) {
     return EFI_UNSUPPORTED;
   }
 
