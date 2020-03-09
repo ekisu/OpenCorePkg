@@ -58,6 +58,7 @@ SELFPKG=OpenCorePkg
 DEPNAMES=('EfiPkg' 'MacInfoPkg')
 DEPURLS=('https://github.com/acidanthera/EfiPkg' 'https://github.com/acidanthera/MacInfoPkg')
 DEPBRANCHES=('master' 'master')
+RTARGETS=('DEBUG' 'RELEASE' 'NOOPT')
 src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/ocbuild/master/efibuild.sh) && eval "$src" || exit 1
 
 if [ "$BUILD_UTILITIES" = "1" ]; then
