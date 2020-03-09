@@ -1277,7 +1277,7 @@ OcSmbiosTablePrepare (
 
   Status = SmbiosExtendTable (SmbiosTable, 1);
   if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_VERBOSE, "OCSMB: SmbiosLookupHost failed to initialise smbios table - %r\n", Status));
+    DEBUG ((DEBUG_INFO, "OCSMB: SmbiosLookupHost failed to initialise smbios table - %r\n", Status));
   }
 
   return Status;

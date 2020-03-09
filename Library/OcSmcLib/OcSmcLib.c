@@ -137,7 +137,7 @@ SmcIoVirtualSmcMakeKey (
 {
   UINTN      Index;
 
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcMakeKey\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcMakeKey\n"));
 
   if (Name != NULL && Key != NULL) {
     *Key  = 0;
@@ -169,7 +169,7 @@ SmcIoVirtualSmcGetKeyCount (
   )
 {
   DEBUG ((
-    DEBUG_VERBOSE,
+    DEBUG_INFO,
     "OCSMC: SmcIoVirtualSmcGetKeyCount %u\n",
     (UINT32) ARRAY_SIZE (mVirtualSmcKeyValue)
     ));
@@ -192,7 +192,7 @@ SmcIoVirtualSmcGetKeyFromIndex (
   OUT SMC_KEY                *Key
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcGetKeyFromIndex\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcGetKeyFromIndex\n"));
 
   if (Key == NULL) {
     return EFI_SMC_BAD_PARAMETER;
@@ -219,7 +219,7 @@ SmcIoVirtualSmcGetKeyInfo (
 {
   UINTN Index;
 
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcGetKeyFromIndex %X\n", Key));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcGetKeyFromIndex %X\n", Key));
 
   if (Size == NULL || Type == NULL || Attributes == NULL) {
     return EFI_SMC_BAD_PARAMETER;
@@ -245,7 +245,7 @@ SmcIoVirtualSmcReset (
   IN UINT32                 Mode
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcReset %X\n", Mode));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcReset %X\n", Mode));
 
   return EFI_SMC_SUCCESS;
 }
@@ -258,7 +258,7 @@ SmcIoVirtualSmcFlashType (
   IN SMC_FLASH_TYPE         Type
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcFlashType %X\n", Type));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcFlashType %X\n", Type));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -270,7 +270,7 @@ SmcIoVirtualSmcUnsupported (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcUnsupported\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcUnsupported\n"));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -285,7 +285,7 @@ SmcIoVirtualSmcFlashWrite (
   IN SMC_DATA               *Data
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcFlashWrite %d\n", Size));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcFlashWrite %d\n", Size));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -299,7 +299,7 @@ SmcIoVirtualSmcFlashAuth (
   IN SMC_DATA               *Data
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcFlashAuth %d\n", Size));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcFlashAuth %d\n", Size));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -311,7 +311,7 @@ SmcIoVirtualSmcUnknown1 (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcUnknown1\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcUnknown1\n"));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -325,7 +325,7 @@ SmcIoVirtualSmcUnknown2 (
   IN UINTN                  Ukn2
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcUnknown2\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcUnknown2\n"));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -339,7 +339,7 @@ SmcIoVirtualSmcUnknown3 (
   IN UINTN                  Ukn2
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcUnknown3\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcUnknown3\n"));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -352,7 +352,7 @@ SmcIoVirtualSmcUnknown4 (
   IN UINTN                  Ukn1
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcUnknown4\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcUnknown4\n"));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }
@@ -365,7 +365,7 @@ SmcIoVirtualSmcUnknown5 (
   IN UINT8                  *Data
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "OCSMC: SmcIoVirtualSmcUnknown5\n"));
+  DEBUG ((DEBUG_INFO, "OCSMC: SmcIoVirtualSmcUnknown5\n"));
 
   return EFI_SMC_UNSUPPORTED_FEATURE;
 }

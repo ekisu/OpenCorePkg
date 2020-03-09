@@ -131,7 +131,7 @@ AIKPollKeyboardHandler (
       );
     if (!EFI_ERROR (Status)) {
       DEBUG ((
-        DEBUG_VERBOSE,
+        DEBUG_INFO,
         "AIK: Key scan 0x%X uni 0x%X Shift 0x%X toggle 0x%X at %Lu\n",
         KeyData.Key.ScanCode,
         KeyData.Key.UnicodeChar,

@@ -71,7 +71,7 @@ EventLibCreateTimerEvent (
   EFI_EVENT  Event;
   EFI_STATUS Status;
 
-  DEBUG ((DEBUG_VERBOSE, "EventLibCreateTimerEvent\n"));
+  DEBUG ((DEBUG_INFO, "EventLibCreateTimerEvent\n"));
 
   Event = NULL;
 
@@ -113,7 +113,7 @@ EventLibCreateNotifyTimerEvent (
   IN BOOLEAN           SignalPeriodic
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "EventLibCreateNotifyTimerEvent\n"));
+  DEBUG ((DEBUG_INFO, "EventLibCreateNotifyTimerEvent\n"));
 
   return EventLibCreateTimerEvent (
            NotifyFunction,
@@ -132,7 +132,7 @@ EventLibCancelEvent (
 {
   EFI_STATUS Status;
 
-  DEBUG ((DEBUG_VERBOSE, "EventLibCancelEvent\n"));
+  DEBUG ((DEBUG_INFO, "EventLibCancelEvent\n"));
 
   Status = gBS->SetTimer (Event, TimerCancel, 0);
 
@@ -150,7 +150,7 @@ EventSignalEvents (
   LIST_ENTRY                 *EventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "EventSignalEvents\n"));
+  DEBUG ((DEBUG_INFO, "EventSignalEvents\n"));
 
   EventHandleEntry = GetFirstNode (&mEventHandles);
 
@@ -182,7 +182,7 @@ InternalFlagAllEventsReady (
   LIST_ENTRY                 *EventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalFlagAllEventsReady\n"));
+  DEBUG ((DEBUG_INFO, "InternalFlagAllEventsReady\n"));
 
   EventHandleEntry = GetFirstNode (&mEventHandles);
 
@@ -208,7 +208,7 @@ InternalSignalEvents (
   LIST_ENTRY                 *EventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalSignalEvents\n"));
+  DEBUG ((DEBUG_INFO, "InternalSignalEvents\n"));
 
   EventHandleEntry = GetFirstNode (&mEventHandles);
 
@@ -242,7 +242,7 @@ InternalRemoveUnregisteredEvents (
   LIST_ENTRY                 *NextEventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalRemoveUnregisteredEvents\n"));
+  DEBUG ((DEBUG_INFO, "InternalRemoveUnregisteredEvents\n"));
 
   EventHandleEntry = GetFirstNode (&mEventHandles);
 
@@ -277,7 +277,7 @@ InternalCreatePollEvents (
 {
   EFI_STATUS Status;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalCreatePollEvents\n"));
+  DEBUG ((DEBUG_INFO, "InternalCreatePollEvents\n"));
 
   Status = EventCreateSimplePointerPollEvent ();
 
@@ -298,7 +298,7 @@ InternalCancelPollEvents (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "InternalCancelPollEvents\n"));
+  DEBUG ((DEBUG_INFO, "InternalCancelPollEvents\n"));
 
   EventCancelSimplePointerPollEvent ();
   EventCancelKeyStrokePollEvent ();
@@ -317,7 +317,7 @@ EventRegisterHandler (
   EFI_STATUS                 Status;
   APPLE_EVENT_HANDLE_PRIVATE *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "EventRegisterHandler\n"));
+  DEBUG ((DEBUG_INFO, "EventRegisterHandler\n"));
 
   Status = EFI_INVALID_PARAMETER;
 
@@ -376,7 +376,7 @@ EventUnregisterHandler (
   LIST_ENTRY                 *EventHandleEntry;
   APPLE_EVENT_HANDLE_PRIVATE *EventHandle;
 
-  DEBUG ((DEBUG_VERBOSE, "EventUnregisterHandler\n"));
+  DEBUG ((DEBUG_INFO, "EventUnregisterHandler\n"));
 
   Status = EFI_INVALID_PARAMETER;
 
@@ -422,7 +422,7 @@ EventSetCursorPosition (
   IN DIMENSION  *Position
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "EventSetCursorPosition\n"));
+  DEBUG ((DEBUG_INFO, "EventSetCursorPosition\n"));
 
   return EventSetCursorPositionImpl (Position);
 }
@@ -449,7 +449,7 @@ EventSetEventName (
   UINTN      AllocationSize;
   CHAR8      *EventName;
 
-  DEBUG ((DEBUG_VERBOSE, "EventSetEventName\n"));
+  DEBUG ((DEBUG_INFO, "EventSetEventName\n"));
 
   Status = EFI_INVALID_PARAMETER;
 
@@ -486,7 +486,7 @@ EventIsCapsLockOn (
   IN OUT BOOLEAN  *CLockOn
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "EventIsCapsLockOn\n"));
+  DEBUG ((DEBUG_INFO, "EventIsCapsLockOn\n"));
 
   return EventIsCapsLockOnImpl (CLockOn);
 }
@@ -498,7 +498,7 @@ InternalUnregisterHandlers (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "InternalUnregisterHandlers\n"));
+  DEBUG ((DEBUG_INFO, "InternalUnregisterHandlers\n"));
 
   EventSimplePointerDesctructor ();
 
@@ -528,7 +528,7 @@ AppleEventUnload (
 {
   EFI_STATUS Status;
 
-  DEBUG ((DEBUG_VERBOSE, "AppleEventUnload\n"));
+  DEBUG ((DEBUG_INFO, "AppleEventUnload\n"));
 
   EventCloseSimplePointerInstallNotifyEvent ();
 
@@ -560,7 +560,7 @@ OcAppleEventInstallProtocol (
   EFI_STATUS           Status;
   APPLE_EVENT_PROTOCOL *Protocol;
 
-  DEBUG ((DEBUG_VERBOSE, "OcAppleEventInstallProtocol\n"));
+  DEBUG ((DEBUG_INFO, "OcAppleEventInstallProtocol\n"));
 
   if (Reinstall) {
     Status = UninstallAllProtocolInstances (&gAppleEventProtocolGuid);

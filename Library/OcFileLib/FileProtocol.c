@@ -153,7 +153,7 @@ FindWritableFileSystem (
 
     if (EFI_ERROR (Status)) {
       DEBUG ((
-        DEBUG_VERBOSE,
+        DEBUG_INFO,
         "FindWritableFileSystem: gBS->HandleProtocol[%u] returned %r\n",
         (UINT32) Index,
         Status
@@ -164,7 +164,7 @@ FindWritableFileSystem (
     Status = SimpleFs->OpenVolume (SimpleFs, &Fs);
     if (EFI_ERROR (Status)) {
       DEBUG ((
-        DEBUG_VERBOSE,
+        DEBUG_INFO,
         "FindWritableFileSystem: SimpleFs->OpenVolume[%u] returned %r\n",
         (UINT32) Index,
         Status
@@ -184,7 +184,7 @@ FindWritableFileSystem (
       );
     if (EFI_ERROR (Status)) {
       DEBUG ((
-        DEBUG_VERBOSE,
+        DEBUG_INFO,
         "FindWritableFileSystem: Fs->Open[%u] returned %r\n",
         (UINT32) Index,
         Status
@@ -221,7 +221,7 @@ SetFileData (
   if (WritableFs == NULL) {
     Status = FindWritableFileSystem (&Fs);
     if (EFI_ERROR (Status)) {
-      DEBUG ((DEBUG_VERBOSE, "WriteFileData: Can't find writable FS\n"));
+      DEBUG ((DEBUG_INFO, "WriteFileData: Can't find writable FS\n"));
       return Status;
     }
   } else {
@@ -242,10 +242,10 @@ SetFileData (
     Fs->Close (File);
 
     if (EFI_ERROR (Status)) {
-      DEBUG ((DEBUG_VERBOSE, "WriteFileData: File->Write returned %r\n", Status));
+      DEBUG ((DEBUG_INFO, "WriteFileData: File->Write returned %r\n", Status));
     } else if (WrittenSize != Size) {
       DEBUG ((
-        DEBUG_VERBOSE,
+        DEBUG_INFO,
         "WriteFileData: File->Write truncated %u to %u\n",
         Status,
         Size,
@@ -254,7 +254,7 @@ SetFileData (
       Status = EFI_BAD_BUFFER_SIZE;
     }
   } else {
-    DEBUG ((DEBUG_VERBOSE, "WriteFileData: Fs->Open of %s returned %r\n", FileName, Status));
+    DEBUG ((DEBUG_INFO, "WriteFileData: Fs->Open of %s returned %r\n", FileName, Status));
   }
 
   if (WritableFs == NULL) {

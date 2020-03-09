@@ -669,7 +669,7 @@ OcKernelFileOpen (
   Status = SafeFileOpen (This, NewHandle, FileName, OpenMode, Attributes);
 
   DEBUG ((
-    DEBUG_VERBOSE,
+    DEBUG_INFO,
     "Opening file %s with %u mode gave - %r\n",
     FileName,
     (UINT32) OpenMode,

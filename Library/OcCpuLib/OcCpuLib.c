@@ -920,7 +920,7 @@ OcCpuGetGeneration (
   }
 
   DEBUG ((
-    DEBUG_VERBOSE,
+    DEBUG_INFO,
     "OCCPU: Discovered CpuFamily %d CpuModel %d CpuStepping %d CpuGeneration %d\n",
     CpuFamily,
     CpuModel,

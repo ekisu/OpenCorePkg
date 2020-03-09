@@ -93,7 +93,7 @@ ParseSerializedDict (
       continue;
     }
 
-    DEBUG ((DEBUG_VERBOSE, "OCS: Parsing serialized at %a at %u index!\n", CurrentKey, Index));
+    DEBUG ((DEBUG_INFO, "OCS: Parsing serialized at %a at %u index!\n", CurrentKey, Index));
 
     //
     // We do not protect from duplicating serialized entries.
@@ -293,7 +293,7 @@ ParseSerializedArray (
   for (Index = 0; Index < ArraySize; Index++) {
     ChildNode = PlistNodeCast (XmlNodeChild (Node, Index), Info->List.Schema->Type);
 
-    DEBUG ((DEBUG_VERBOSE, "OCS: Processing array %u/%u element\n", Index + 1, ArraySize));
+    DEBUG ((DEBUG_INFO, "OCS: Processing array %u/%u element\n", Index + 1, ArraySize));
 
     if (ChildNode == NULL) {
       DEBUG ((DEBUG_INFO, "OCS: Couldn't get array serialized at %u index!\n", Index));

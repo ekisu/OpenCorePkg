@@ -252,7 +252,7 @@ InernalOcAudioPlayFileDone (
 
   Private = Context;
 
-  DEBUG ((DEBUG_VERBOSE, "OCAU: PlayFileDone signaling for completion\n"));
+  DEBUG ((DEBUG_INFO, "OCAU: PlayFileDone signaling for completion\n"));
 
   //
   // The event callback is guaranteed to be called with TPL_NOTIFY,
@@ -397,7 +397,7 @@ InternalOcAudioStopPlayBack (
   // ExitBootServices handler.
   //
 
-  DEBUG ((DEBUG_VERBOSE, "OCAU: StopPlayback %d %p\n", Wait, Private->CurrentBuffer != NULL));
+  DEBUG ((DEBUG_INFO, "OCAU: StopPlayback %d %p\n", Wait, Private->CurrentBuffer != NULL));
 
   //
   // Ensure that we never have the events signaled.
@@ -411,7 +411,7 @@ InternalOcAudioStopPlayBack (
     //
     if (Private->CurrentBuffer != NULL) {
       Status = gBS->WaitForEvent (1, &Private->PlaybackEvent, &Index);
-      DEBUG ((DEBUG_VERBOSE, "OCAU: StopPlayback wait - %r\n", Status));
+      DEBUG ((DEBUG_INFO, "OCAU: StopPlayback wait - %r\n", Status));
       //
       // This can fail in the following cases when current TPL is not TPL_APPLICATION.
       // boot.efi does it from TPL_NOTIFY for password clicks in FV2 UI.
@@ -459,7 +459,7 @@ InternalOcAudioStopPlayBack (
     // in TPL_NOTIFY guarantees no callbacks.
     //
     Status = gBS->CheckEvent (Private->PlaybackEvent);
-    DEBUG ((DEBUG_VERBOSE, "OCAU: StopPlayback check - %r\n", Status));
+    DEBUG ((DEBUG_INFO, "OCAU: StopPlayback check - %r\n", Status));
   }
 
   gBS->RestoreTPL (OldTpl);

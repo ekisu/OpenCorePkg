@@ -234,7 +234,7 @@ ReadAppleKernelImage (
 
     switch (*MagicPtr) {
       case MACH_HEADER_64_SIGNATURE:
-        DEBUG ((DEBUG_VERBOSE, "Found Mach-O compressed %d offset %u size %u\n", Compressed, Offset, *KernelSize));
+        DEBUG ((DEBUG_INFO, "Found Mach-O compressed %d offset %u size %u\n", Compressed, Offset, *KernelSize));
 
         //
         // This is just a valid (formerly) compressed image.
@@ -257,7 +257,7 @@ ReadAppleKernelImage (
             return RETURN_OUT_OF_RESOURCES;
           }
 
-          DEBUG ((DEBUG_VERBOSE, "Determined kernel size is %u bytes\n", *KernelSize));
+          DEBUG ((DEBUG_INFO, "Determined kernel size is %u bytes\n", *KernelSize));
         }
 
         Status = ReplaceBuffer (*KernelSize, Buffer, AllocatedSize, ReservedSize);
@@ -303,13 +303,13 @@ ReadAppleKernelImage (
         //
         *KernelSize = ParseCompressedHeader (File, Buffer, Offset, AllocatedSize, ReservedSize);
         if (*KernelSize != 0) {
-          DEBUG ((DEBUG_VERBOSE, "Compressed result has %08X magic\n", *(UINT32 *) Buffer));
+          DEBUG ((DEBUG_INFO, "Compressed result has %08X magic\n", *(UINT32 *) Buffer));
           continue;
         }
         return RETURN_INVALID_PARAMETER;
       }
       default:
-        DEBUG ((Offset > 0 ? DEBUG_INFO : DEBUG_VERBOSE, "Invalid kernel magic %08X at %08X\n", *MagicPtr, Offset));
+        DEBUG ((Offset > 0 ? DEBUG_INFO : DEBUG_INFO, "Invalid kernel magic %08X at %08X\n", *MagicPtr, Offset));
         return RETURN_INVALID_PARAMETER;
     }
   }

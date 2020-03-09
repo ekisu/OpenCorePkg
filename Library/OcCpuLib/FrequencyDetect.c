@@ -284,7 +284,7 @@ InternalCalculateTSCFromPMTimer (
       }
     }
 
-    DEBUG ((DEBUG_VERBOSE, "TscFrequency %lld\n", TSCFrequency));
+    DEBUG ((DEBUG_INFO, "TscFrequency %lld\n", TSCFrequency));
 
     //
     // Set the variable if not present and valid.

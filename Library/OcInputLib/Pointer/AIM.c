@@ -235,7 +235,7 @@ AmiShimPointerPositionHandler (
       Pointer->EfiPointer->GetPositionState (Pointer->EfiPointer, &PositionState);
       if (PositionState.Changed == 1) {
         if (PositionState.Absolute == 0) {
-          DEBUG ((DEBUG_VERBOSE, "Position: %d %d %d %d\n",
+          DEBUG ((DEBUG_INFO, "Position: %d %d %d %d\n",
                  PositionState.Changed, PositionState.PositionX, PositionState.PositionY, PositionState.PositionZ));
           AmiShimPointerSmooth(&PositionState.PositionX, &PositionState.PositionY, &PositionState.PositionZ);
           if (PositionState.PositionX != 0 || PositionState.PositionY != 0 || PositionState.PositionZ != 0) {
@@ -273,7 +273,7 @@ AmiShimPointerUpdateState (
     return EFI_NOT_READY;
   }
 
-  DEBUG ((DEBUG_VERBOSE, "Button: %d %d %d %d, Position: %d %d %d %d\n",
+  DEBUG ((DEBUG_INFO, "Button: %d %d %d %d, Position: %d %d %d %d\n",
     ButtonState.Changed, ButtonState.LeftButton, ButtonState.MiddleButton, ButtonState.RightButton,
     Pointer->PositionChanged, Pointer->PositionX, Pointer->PositionY, Pointer->PositionZ));
 
@@ -326,14 +326,14 @@ AmiShimPointerGetState (
       if (State->RelativeMovementX != 0 ||
           State->RelativeMovementY != 0 ||
           State->RelativeMovementZ != 0) {
-        DEBUG ((DEBUG_VERBOSE, "Received[%p] %d %d %d <%d, %d>\n", This, State->RelativeMovementX, State->RelativeMovementY, State->RelativeMovementZ,
+        DEBUG ((DEBUG_INFO, "Received[%p] %d %d %d <%d, %d>\n", This, State->RelativeMovementX, State->RelativeMovementY, State->RelativeMovementZ,
                 State->LeftButton, State->RightButton));
       } else {
-        DEBUG ((DEBUG_VERBOSE, "Received[%p] %d %d %d\n", This, State->RelativeMovementX, State->RelativeMovementY, State->RelativeMovementZ));
+        DEBUG ((DEBUG_INFO, "Received[%p] %d %d %d\n", This, State->RelativeMovementX, State->RelativeMovementY, State->RelativeMovementZ));
       }
     }
   } else {
-    DEBUG ((DEBUG_VERBOSE, "Received unknown this %p\n", This));
+    DEBUG ((DEBUG_INFO, "Received unknown this %p\n", This));
     Status = EFI_INVALID_PARAMETER;
   }
 

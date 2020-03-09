@@ -100,7 +100,7 @@ AcpiFindRsdp (
     //
     if (CompareGuid (&gST->ConfigurationTable[Index].VendorGuid, &gEfiAcpi20TableGuid)) {
       Rsdp = (EFI_ACPI_6_2_ROOT_SYSTEM_DESCRIPTION_POINTER *) gST->ConfigurationTable[Index].VendorTable;
-      DEBUG ((DEBUG_VERBOSE, "OCA: Found ACPI 2.0 RSDP table %p\n", Rsdp));
+      DEBUG ((DEBUG_INFO, "OCA: Found ACPI 2.0 RSDP table %p\n", Rsdp));
       break;
     }
 
@@ -109,7 +109,7 @@ AcpiFindRsdp (
     //
     if (CompareGuid (&gST->ConfigurationTable[Index].VendorGuid, &gEfiAcpi10TableGuid)) {
       Rsdp = (EFI_ACPI_6_2_ROOT_SYSTEM_DESCRIPTION_POINTER *) gST->ConfigurationTable[Index].VendorTable;
-      DEBUG ((DEBUG_VERBOSE, "OCA: Found ACPI 1.0 RSDP table %p\n", Rsdp));
+      DEBUG ((DEBUG_INFO, "OCA: Found ACPI 1.0 RSDP table %p\n", Rsdp));
     }
   }
 
@@ -119,7 +119,7 @@ AcpiFindRsdp (
   if (Rsdp == NULL) {
     Rsdp = AcpiFindLegacyRsdp ();
     if (Rsdp != NULL) {
-      DEBUG ((DEBUG_VERBOSE, "OCA: Found ACPI legacy RSDP table %p\n", Rsdp));
+      DEBUG ((DEBUG_INFO, "OCA: Found ACPI legacy RSDP table %p\n", Rsdp));
     }
   }
 
@@ -500,14 +500,14 @@ AcpiInitContext (
   // Support RSDT on ACPI 1.0 and newer.
   //
   Context->Rsdt = (OC_ACPI_6_2_ROOT_SYSTEM_DESCRIPTION_TABLE *)(UINTN) Context->Rsdp->RsdtAddress;
-  DEBUG ((DEBUG_VERBOSE, "OCA: Found ACPI RSDT table %p", Context->Rsdt));
+  DEBUG ((DEBUG_INFO, "OCA: Found ACPI RSDT table %p", Context->Rsdt));
 
   //
   // ACPI 2.0 and newer have XSDT as well.
   //
   if (Context->Rsdp->Revision > 0) {
     Context->Xsdt = (OC_ACPI_6_2_EXTENDED_SYSTEM_DESCRIPTION_TABLE *)(UINTN) Context->Rsdp->XsdtAddress;
-    DEBUG ((DEBUG_VERBOSE, "OCA: Found ACPI XSDT table %p", Context->Xsdt));
+    DEBUG ((DEBUG_INFO, "OCA: Found ACPI XSDT table %p", Context->Xsdt));
   }
 
   if (Context->Rsdt == NULL && Context->Xsdt == NULL) {

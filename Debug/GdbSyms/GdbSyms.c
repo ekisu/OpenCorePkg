@@ -66,14 +66,14 @@ Initialize (
     (UINTN) &EIDCME |
      1
     ;
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &ESTP));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EDIITH));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EIDH));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EIOHU));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EISH));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EIDDE));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EIDCNE));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EIDCRE));
-  DEBUG ((DEBUG_VERBOSE, "%a: %llx\n", __FUNCTION__, &EIDCME));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &ESTP));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EDIITH));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EIDH));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EIOHU));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EISH));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EIDDE));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EIDCNE));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EIDCRE));
+  DEBUG ((DEBUG_INFO, "%a: %llx\n", __FUNCTION__, &EIDCME));
   return !!Dummy & EFI_SUCCESS;
 }

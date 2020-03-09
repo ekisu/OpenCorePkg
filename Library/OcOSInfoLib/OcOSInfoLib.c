@@ -109,12 +109,12 @@ InternalOSInfoSet (
       // if (BootCurrent == 0x80) RTC[0x30] |= 0x1U;
       // REF: E121EC07-9C42-45EE-B0B6-FFF8EF03C521, gAppleRtcRamProtocolGuid.
       //
-      DEBUG ((DEBUG_VERBOSE, "OCOS: Should use black background\n"));
+      DEBUG ((DEBUG_INFO, "OCOS: Should use black background\n"));
     } else {
       //
       // if (BootCurrent == 0x80) RTC[0x30] &= ~0x1U;
       //
-      DEBUG ((DEBUG_VERBOSE, "OCOS: Should use grey background\n"));
+      DEBUG ((DEBUG_INFO, "OCOS: Should use grey background\n"));
     }
   }
 }
@@ -202,7 +202,7 @@ OcOSInfoInstallProtocol (
   EFI_STATUS           Status;
   EFI_OS_INFO_PROTOCOL *Protocol;
 
-  DEBUG ((DEBUG_VERBOSE, "OcOSInfoInstallProtocol\n"));
+  DEBUG ((DEBUG_INFO, "OcOSInfoInstallProtocol\n"));
 
   if (Reinstall) {
     Status = UninstallAllProtocolInstances (&gEfiOSInfoProtocolGuid);

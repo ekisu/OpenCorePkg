@@ -80,7 +80,7 @@ InternalGetAppleKeyStrokes (
 {
   EFI_STATUS Status;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetAppleKeyStrokes\n"));
+  DEBUG ((DEBUG_INFO, "InternalGetAppleKeyStrokes\n"));
 
   Status = EFI_UNSUPPORTED;
 
@@ -110,7 +110,7 @@ InternalGetAppleKeyStrokes (
           if (*KeyCodes == NULL) {
             *NumberOfKeyCodes = 0;
             Status        = EFI_OUT_OF_RESOURCES;
-            DEBUG ((DEBUG_VERBOSE, "InternalGetAppleKeyStrokes alloc failure\n"));
+            DEBUG ((DEBUG_INFO, "InternalGetAppleKeyStrokes alloc failure\n"));
           } else {
             Status = mKeyMapAggregator->GetKeyStrokes (
                                                mKeyMapAggregator,
@@ -145,7 +145,7 @@ InternalGetModifierStrokes (
   UINTN              NumberOfKeyCodes;
   APPLE_KEY_CODE     *KeyCodes;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetModifierStrokes\n"));
+  DEBUG ((DEBUG_INFO, "InternalGetModifierStrokes\n"));
 
   Status = InternalGetAppleKeyStrokes (
              &Modifiers,
@@ -176,7 +176,7 @@ InternalAppleKeyEventDataFromInputKey (
   EFI_STATUS           Status;
   APPLE_KEY_EVENT_DATA *KeyEventData;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalAppleKeyEventDataFromInputKey\n"));
+  DEBUG ((DEBUG_INFO, "InternalAppleKeyEventDataFromInputKey\n"));
 
   Status = EFI_INVALID_PARAMETER;
 
@@ -218,7 +218,7 @@ InternalGetAndRemoveReleasedKeys (
   APPLE_KEY_CODE ReleasedKeysBuffer[12];
   UINTN          ReleasedKeysSize;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetAndRemoveReleasedKeys\n"));
+  DEBUG ((DEBUG_INFO, "InternalGetAndRemoveReleasedKeys\n"));
 
   NumberOfReleasedKeys = 0;
 
@@ -294,7 +294,7 @@ InternalIsCLockOn (
   UINTN                  Index2;
   KEY_STROKE_INFORMATION *KeyInfo;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalIsCLockOn\n"));
+  DEBUG ((DEBUG_INFO, "InternalIsCLockOn\n"));
 
   //
   // Check against invalid usage
@@ -340,7 +340,7 @@ InternalGetCurrentStroke (
   KEY_STROKE_INFORMATION *KeyInfo;
   UINTN                  Index;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetCurrentStroke\n"));
+  DEBUG ((DEBUG_INFO, "InternalGetCurrentStroke\n"));
 
   KeyInfo = NULL;
 
@@ -378,7 +378,7 @@ InternalGetCurrentKeyStroke (
   BOOLEAN                AcceptStroke;
   BOOLEAN                Shifted;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalGetCurrentKeyStroke\n"));
+  DEBUG ((DEBUG_INFO, "InternalGetCurrentKeyStroke\n"));
 
   if (mModifiers != Modifiers) {
     for (Index = 0; Index < ARRAY_SIZE (mKeyStrokeInfo); ++Index) {
@@ -543,7 +543,7 @@ InternalAppleEventDataFromCurrentKeyStroke (
   EFI_CONSOLE_CONTROL_SCREEN_MODE Mode;
   UINTN                           Index;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalAppleEventDataFromCurrentKeyStroke\n"));
+  DEBUG ((DEBUG_INFO, "InternalAppleEventDataFromCurrentKeyStroke\n"));
 
   ZeroMem (&InputKey, sizeof (InputKey));
 
@@ -621,7 +621,7 @@ InternalKeyStrokePollNotifyFunction (
   APPLE_MODIFIER_MAP Modifiers;
   APPLE_MODIFIER_MAP PartialModifers;
 
-  DEBUG ((DEBUG_VERBOSE, "InternalKeyStrokePollNotifyFunction\n"));
+  DEBUG ((DEBUG_INFO, "InternalKeyStrokePollNotifyFunction\n"));
 
   EventData.KeyData = NULL;
   Modifiers         = 0;
@@ -672,7 +672,7 @@ InternalInitializeKeyHandler (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "InternalInitializeKeyHandler\n"));
+  DEBUG ((DEBUG_INFO, "InternalInitializeKeyHandler\n"));
 
   if (!mInitialized) {
     mInitialized = TRUE;
@@ -693,7 +693,7 @@ EventCreateKeyStrokePollEvent (
 {
   EFI_STATUS Status;
 
-  DEBUG ((DEBUG_VERBOSE, "EventCreateKeyStrokePollEvent\n"));
+  DEBUG ((DEBUG_INFO, "EventCreateKeyStrokePollEvent\n"));
 
   Status = gBS->LocateProtocol (
                   &gAppleKeyMapAggregatorProtocolGuid,
@@ -725,7 +725,7 @@ EventCancelKeyStrokePollEvent (
   VOID
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "EventCancelKeyStrokePollEvent\n"));
+  DEBUG ((DEBUG_INFO, "EventCancelKeyStrokePollEvent\n"));
 
   EventLibCancelEvent (mKeyStrokePollEvent);
 
@@ -750,7 +750,7 @@ EventIsCapsLockOnImpl (
 {
   EFI_STATUS Status;
 
-  DEBUG ((DEBUG_VERBOSE, "EventIsCapsLockOnImpl\n"));
+  DEBUG ((DEBUG_INFO, "EventIsCapsLockOnImpl\n"));
 
   Status = EFI_INVALID_PARAMETER;
 

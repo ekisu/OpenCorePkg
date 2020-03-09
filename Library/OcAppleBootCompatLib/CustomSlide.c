@@ -670,7 +670,7 @@ AppleSlideUnlockForSafeMode (
     }
 
     DEBUG ((
-      DEBUG_VERBOSE,
+      DEBUG_INFO,
       "OCABC: Found first %d at off %X\n",
       (UINT32) NewWay,
       (UINT32) FirstOff
@@ -688,7 +688,7 @@ AppleSlideUnlockForSafeMode (
       //
       // Here we just patch the comparison code and the check by straight nopping.
       //
-      DEBUG ((DEBUG_VERBOSE, "OCABC: Patching new safe mode aslr check...\n"));
+      DEBUG ((DEBUG_INFO, "OCABC: Patching new safe mode aslr check...\n"));
       SetMem (StartOff + FirstOff, SearchSeqNewSize + 1, 0x90);
       return;
     }
@@ -701,10 +701,10 @@ AppleSlideUnlockForSafeMode (
       SecondOff++;
     }
 
-    DEBUG ((DEBUG_VERBOSE, "OCABC: Found second at off %X\n", (UINT32) SecondOff));
+    DEBUG ((DEBUG_INFO, "OCABC: Found second at off %X\n", (UINT32) SecondOff));
 
     if (FirstOff + MaxDist < SecondOff) {
-      DEBUG ((DEBUG_VERBOSE, "OCABC: Trying next match...\n"));
+      DEBUG ((DEBUG_INFO, "OCABC: Trying next match...\n"));
       SecondOff = 0;
       FirstOff += sizeof (SearchSeq);
     }
@@ -716,7 +716,7 @@ AppleSlideUnlockForSafeMode (
     // Since the state values are contradictive (e.g. safe & single at the same time)
     // We are allowed to use this instead of to simulate if (false).
     //
-    DEBUG ((DEBUG_VERBOSE, "OCABC: Patching safe mode aslr check...\n"));
+    DEBUG ((DEBUG_INFO, "OCABC: Patching safe mode aslr check...\n"));
     SetMem (StartOff + FirstOff, sizeof (SearchSeq), 0xFF);
     SetMem (StartOff + SecondOff, sizeof (SearchSeq), 0xFF);
   }

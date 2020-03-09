@@ -47,7 +47,7 @@ AIKShimAmiKeycodeReadEfikey (
   OUT AMI_EFI_KEY_DATA         *KeyData
   )
 {
-  DEBUG ((DEBUG_VERBOSE, "AIKAmiKeycodeReadEfikey %p %p ours %p event %d",
+  DEBUG ((DEBUG_INFO, "AIKAmiKeycodeReadEfikey %p %p ours %p event %d",
     This, KeyData, gAikSelf.Source.AmiKeycode, gAikSelf.InPollKeyboardEvent));
 
   if (This == NULL || KeyData == NULL || gAikSelf.OurJobIsDone) {
@@ -95,7 +95,7 @@ AIKShimTextInputReadKeyStroke (
   EFI_STATUS        Status;
   AMI_EFI_KEY_DATA  AmiKeyData;
 
-  DEBUG ((DEBUG_VERBOSE, "AIKTextInputReadKeyStroke %p %p ours %p event %d",
+  DEBUG ((DEBUG_INFO, "AIKTextInputReadKeyStroke %p %p ours %p event %d",
     This, Key, gAikSelf.Source.TextInput, gAikSelf.InPollKeyboardEvent));
 
   if (This == NULL || Key == NULL || gAikSelf.OurJobIsDone) {
@@ -156,7 +156,7 @@ AIKShimTextInputReadKeyStrokeEx (
   EFI_STATUS        Status;
   AMI_EFI_KEY_DATA  AmiKeyData;
 
-  DEBUG ((DEBUG_VERBOSE, "AIKTextInputReadKeyStrokeEx %p %p ours %p event %d",
+  DEBUG ((DEBUG_INFO, "AIKTextInputReadKeyStrokeEx %p %p ours %p event %d",
     This, KeyData, gAikSelf.Source.TextInputEx, gAikSelf.InPollKeyboardEvent));
 
   if (This == NULL || KeyData == NULL || gAikSelf.OurJobIsDone) {
@@ -192,7 +192,7 @@ AIKShimWaitForKeyHandler (
   }
 
   if (!AIKDataEmpty (&gAikSelf.Data)) {
-    DEBUG ((DEBUG_VERBOSE, "Caught KeyBufferSize non-zero\n"));
+    DEBUG ((DEBUG_INFO, "Caught KeyBufferSize non-zero\n"));
     gBS->SignalEvent (Event);
   }
 }

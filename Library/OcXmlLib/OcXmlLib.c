@@ -382,9 +382,9 @@ XmlFreeRefs (
 //
 #ifdef XML_PARSER_VERBOSE
 #define XML_PARSER_INFO(Parser, Message) \
-  DEBUG ((DEBUG_VERBOSE, "XML_PARSER_INFO %a\n", Message));
+  DEBUG ((DEBUG_INFO, "XML_PARSER_INFO %a\n", Message));
 #define XML_PARSER_TAG(Parser, Tag) \
-  DEBUG ((DEBUG_VERBOSE, "XML_PARSER_TAG %a\n", Tag));
+  DEBUG ((DEBUG_INFO, "XML_PARSER_TAG %a\n", Tag));
 #else
 #define XML_PARSER_INFO(Parser, Message) do {} while (0)
 #define XML_PARSER_TAG(Parser, Tag) do {} while (0)
@@ -439,7 +439,7 @@ XmlParserError (
 #define XML_PARSER_ERROR(Parser, Offset, Message) \
   XmlParserError (Parser, Offset, Message)
 #define XML_USAGE_ERROR(Message) \
-  DEBUG ((DEBUG_VERBOSE, "%a\n", Message));
+  DEBUG ((DEBUG_INFO, "%a\n", Message));
 #else
 #define XML_PARSER_ERROR(Parser, Offset, Message) do {} while (0)
 #define XML_USAGE_ERROR(X) do {} while (0)

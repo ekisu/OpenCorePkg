@@ -518,7 +518,7 @@ DppDbGetPropertyBuffer (
     ++NumberOfNodes;
   }
 
-  DEBUG ((DEBUG_VERBOSE, "Saving to %p, given %u, requested %u\n", Buffer, (UINT32) *Size, (UINT32) BufferSize));
+  DEBUG ((DEBUG_INFO, "Saving to %p, given %u, requested %u\n", Buffer, (UINT32) *Size, (UINT32) BufferSize));
 
   BufferTooSmall = *Size < BufferSize;
   *Size  = BufferSize;
