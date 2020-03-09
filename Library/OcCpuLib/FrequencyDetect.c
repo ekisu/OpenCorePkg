@@ -28,7 +28,7 @@
 #include <Library/UefiRuntimeServicesTableLib.h>
 #include <ProcessorInfo.h>
 #include <Register/Msr.h>
-#include <Register/Amd/Cpuid.h>
+//#include <Register/Amd/Cpuid.h>
 
 #include "OcCpuInternals.h"
 
@@ -61,13 +61,15 @@ InternalGetPmTimerAddr (
 {
   UINTN   TimerAddr;
   UINT32  CpuVendor;
-  CPUID_AMD_EXTENDED_CPU_SIG_EAX AmdExtendedSignature;
+  //CPUID_AMD_EXTENDED_CPU_SIG_EAX AmdExtendedSignature;
 
   TimerAddr = 0;
 
   if (Type != NULL) {
     *Type = "Failure";
   }
+
+  return TimerAddr;
 
   //
   // Intel timer support.
@@ -133,11 +135,11 @@ InternalGetPmTimerAddr (
     AsmCpuid (CPUID_SIGNATURE, NULL, &CpuVendor, NULL, NULL);
 
     if (CpuVendor == CPUID_VENDOR_AMD) {
-      AsmCpuid(CPUID_EXTENDED_SIGNATURE, &AmdExtendedSignature, NULL, NULL, NULL);
+//      AsmCpuid(CPUID_EXTENDED_SIGNATURE, &AmdExtendedSignature, NULL, NULL, NULL);
       
       // Ryzen.
-      if (AmdExtendedSignature.Bits.BaseFamily == 0x0F &&
-          AmdExtendedSignature.Bits.BaseFamily + AmdExtendedSignature.Bits.ExtFamily >= 0x17) {
+//      if (AmdExtendedSignature.Bits.BaseFamily == 0x0F &&
+//          AmdExtendedSignature.Bits.BaseFamily + AmdExtendedSignature.Bits.ExtFamily >= 0x17) {
         TimerAddr = MmioRead32 (
           R_AMD_ACPI_MMIO_BASE + R_AMD_ACPI_MMIO_PMIO_BASE + R_AMD_ACPI_PM_TMR_BLOCK
           );
@@ -145,7 +147,7 @@ InternalGetPmTimerAddr (
           *Type = "AMD";
         }
         DEBUG ((DEBUG_INFO, "AMD\n"));
-      }
+//      }
     }
   }
 
