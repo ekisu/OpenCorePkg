@@ -28,6 +28,7 @@
 #include <Library/UefiRuntimeServicesTableLib.h>
 #include <ProcessorInfo.h>
 #include <Register/Msr.h>
+#include <Register/Amd/Cpuid.h>
 
 #include "OcCpuInternals.h"
 
