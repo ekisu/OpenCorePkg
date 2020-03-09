@@ -60,6 +60,7 @@ InternalGetPmTimerAddr (
 {
   UINTN   TimerAddr;
   UINT32  CpuVendor;
+  CPUID_AMD_EXTENDED_CPU_SIG_EAX AmdExtendedSignature;
 
   TimerAddr = 0;
 
@@ -131,15 +132,19 @@ InternalGetPmTimerAddr (
     AsmCpuid (CPUID_SIGNATURE, NULL, &CpuVendor, NULL, NULL);
 
     if (CpuVendor == CPUID_VENDOR_AMD) {
-      AmdEnableAcpiMmio();
-
-      TimerAddr = MmioRead32 (
-        R_AMD_ACPI_MMIO_BASE + R_AMD_ACPI_MMIO_PMIO_BASE + R_AMD_ACPI_PM_TMR_BLOCK
-        );
-      if (Type != NULL) {
-        *Type = "AMD";
+      AsmCpuid(CPUID_EXTENDED_SIGNATURE, &AmdExtendedSignature, NULL, NULL, NULL);
+      
+      // Ryzen.
+      if (AmdExtendedSignature.Bits.BaseFamily == 0x0F &&
+          AmdExtendedSignature.Bits.BaseFamily + AmdExtendedSignature.Bits.ExtFamily >= 0x17) {
+        TimerAddr = MmioRead32 (
+          R_AMD_ACPI_MMIO_BASE + R_AMD_ACPI_MMIO_PMIO_BASE + R_AMD_ACPI_PM_TMR_BLOCK
+          );
+        if (Type != NULL) {
+          *Type = "AMD";
+        }
+        DEBUG ((DEBUG_INFO, "AMD\n"));
       }
-      DEBUG ((DEBUG_INFO, "AMD\n"));
     }
   }
 

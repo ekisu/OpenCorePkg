@@ -16,6 +16,7 @@
 #define CPUID_H
 
 #include <Register/Cpuid.h>
+#include <Register/Amd/Cpuid.h>
 
 #define CPUID_L2_CACHE_FEATURE  0x80000006
 
